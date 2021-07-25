@@ -29,24 +29,12 @@ class Monitoring extends CI_Controller
 	public function index()
 	{
 		check_not_login();
-		$data = $this->monitor->get();
-		if ($data != null) {
-			$this->load->view('layouts/default', [
-				'title'	=> 'Monitoring',
-				'pages'	=> 'pages/monitoring/index',
-				'user'	=> 'Admin',
-				'data' 	=> $data,
-				'isGPS' => false
-			]);
-		} else {
-			$this->load->view('layouts/default', [
-				'title'	=> 'Monitoring',
-				'pages'	=> 'pages/monitoring/index',
-				'user'	=> 'Admin',
-				'data'	=> null,
-				'isGPS' => false
-			]);
-		}
+		$this->load->view('layouts/default', [
+			'title'	=> 'Monitoring',
+			'pages'	=> 'pages/monitoring/index',
+			'user'	=> $this->session->userdata('nama'),
+			'statusPage' => "Monitoring"
+		]);
 	}
 
 

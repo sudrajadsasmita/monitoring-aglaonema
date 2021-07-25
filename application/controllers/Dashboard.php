@@ -25,7 +25,8 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Monitoring_model', 'monitor');
-		$this->load->model('Lokasi_model', 'lokasi');
+		$this->load->model('Lokasi_tanaman_model', 'lokasi_tanaman');
+		$this->load->model('Lokasi_alat_model', 'lokasi_alat');
 	}
 
 	public function index()
@@ -36,9 +37,8 @@ class Dashboard extends CI_Controller
 		$this->load->view('layouts/default', [
 			'title'	=> 'Dashboard',
 			'pages'	=> 'pages/dashboard/index',
-			'user'	=> 'Admin',
-			'data'	=> null,
-			'isGPS' => false
+			'user'	=> $this->session->userdata('nama'),
+			'statusPage' => 'Dashboard'
 		]);
 	}
 	public function status()
@@ -61,19 +61,37 @@ class Dashboard extends CI_Controller
 			]);
 		}
 	}
-	public function gps()
+	public function gpsTanaman()
 	{
-		$data = $this->lokasi->latestRecord();
+		$data = $this->lokasi_tanaman->latestRecord();
 		if ($data ==  null) {
 			$dataReplace = [
 				'longitude' => 0,
 				'latitude' => 0,
 			];
-			$this->load->view('includes/gps', [
+			$this->load->view('includes/gps_tanaman', [
 				'data' => $dataReplace
 			]);
 		} else {
-			$this->load->view('includes/gps', [
+			$this->load->view('includes/gps_tanaman', [
+				'data' => $data
+			]);
+		}
+	}
+
+	public function gpsAlat()
+	{
+		$data = $this->lokasi_alat->latestRecord();
+		if ($data ==  null) {
+			$dataReplace = [
+				'longitude' => 0,
+				'latitude' => 0,
+			];
+			$this->load->view('includes/gps_alat', [
+				'data' => $dataReplace
+			]);
+		} else {
+			$this->load->view('includes/gps_alat', [
 				'data' => $data
 			]);
 		}

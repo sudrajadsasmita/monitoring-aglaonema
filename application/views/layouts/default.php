@@ -15,6 +15,7 @@
 	<!-- vendor css -->
 	<link rel="stylesheet" href="<?= base_url('vendor/able/dist/'); ?>assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+	<!-- Font Awesome -->
 
 
 
@@ -123,9 +124,7 @@
 				<!-- page statustic card start -->
 
 				<div class="col-md-12">
-					<?php $this->load->view($pages, [
-						'data' => $data
-					]); ?>
+					<?php $this->load->view($pages); ?>
 				</div>
 			</div>
 			<!-- [ Main Content ] end -->
@@ -145,148 +144,155 @@
 
 	<!-- custom-chart js -->
 	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/pages/dashboard-main.js"></script>
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js">
+	</script>
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 	<script>
 		$(document).ready(function() {
 			let base_url = "<?= base_url(); ?>";
+			let statusPage = "<?= $statusPage; ?>";
 
-			function reloadInterval() {
+			if (statusPage == "Dashboard") {
+				function reloadInterval() {
 
-				$.ajax({
-					type: "GET",
-					url: base_url + "Monitoring/getAjax",
-					dataType: "JSON",
-					success: function(response) {
-						// console.log(response);
-						let data = response.data;
-						let label = [];
-						let value = [];
-						let value1 = [];
-						let value2 = [];
-						let value3 = [];
-						let value4 = [];
-						data.forEach(element => {
-							value.push(element[1]);
-							value1.push(element[2]);
-							value2.push(element[3]);
-							value3.push(element[4]);
-							value4.push(element[5]);
-							label.push(element[6]);
-						});
-						var ctx = document.getElementById('humidity');
-						var chart = new Chart(ctx, {
-							type: 'line',
-							data: {
-								labels: label,
-								datasets: [{
-									label: 'Nilai Kelembaban Udara',
-									backgroundColor: 'transparent',
-									borderColor: 'orange',
-									pointRadius: 0,
-									data: value
-								}]
-							},
-							options: {
-								bazierCurve: false,
-								responsive: true,
-								animation: {
-									duration: 0,
-									easing: 'linear'
+					$.ajax({
+						type: "GET",
+						url: base_url + "Monitoring/getAjax",
+						dataType: "JSON",
+						success: function(response) {
+							// console.log(response);
+							let data = response.data;
+							let label = [];
+							let value = [];
+							let value1 = [];
+							let value2 = [];
+							let value3 = [];
+							let value4 = [];
+							data.forEach(element => {
+								value.push(element[1]);
+								value1.push(element[2]);
+								value2.push(element[3]);
+								value3.push(element[4]);
+								value4.push(element[5]);
+								label.push(element[6]);
+							});
+							var ctx = document.getElementById('humidity');
+							var chart = new Chart(ctx, {
+								type: 'line',
+								data: {
+									labels: label,
+									datasets: [{
+										label: 'Nilai Kelembaban Udara',
+										backgroundColor: 'transparent',
+										borderColor: 'orange',
+										pointRadius: 0,
+										data: value
+									}]
+								},
+								options: {
+									bazierCurve: false,
+									responsive: true,
+									animation: {
+										duration: 0,
+										easing: 'linear'
+									}
 								}
-							}
-						});
-						var ctx1 = document.getElementById('temperature');
-						var chart = new Chart(ctx1, {
-							type: 'line',
-							data: {
-								labels: label,
-								datasets: [{
-									label: 'Nilai Temperature Udara',
-									backgroundColor: 'transparent',
-									borderColor: 'green',
-									pointRadius: 0,
-									data: value1
-								}]
-							},
-							options: {
-								bazierCurve: false,
-								responsive: true,
-								animation: {
-									duration: 0,
-									easing: 'linear'
+							});
+							var ctx1 = document.getElementById('temperature');
+							var chart = new Chart(ctx1, {
+								type: 'line',
+								data: {
+									labels: label,
+									datasets: [{
+										label: 'Nilai Temperature Udara',
+										backgroundColor: 'transparent',
+										borderColor: 'green',
+										pointRadius: 0,
+										data: value1
+									}]
+								},
+								options: {
+									bazierCurve: false,
+									responsive: true,
+									animation: {
+										duration: 0,
+										easing: 'linear'
+									}
 								}
-							}
-						});
-						var ctx2 = document.getElementById('lux');
-						var chart = new Chart(ctx2, {
-							type: 'line',
-							data: {
-								labels: label,
-								datasets: [{
-									label: 'Nilai Intensitas Cahaya',
-									backgroundColor: 'transparent',
-									borderColor: 'red',
-									pointRadius: 0,
-									data: value2
-								}]
-							},
-							options: {
-								bazierCurve: false,
-								responsive: true,
-								animation: {
-									duration: 0,
-									easing: 'linear'
+							});
+							var ctx2 = document.getElementById('lux');
+							var chart = new Chart(ctx2, {
+								type: 'line',
+								data: {
+									labels: label,
+									datasets: [{
+										label: 'Nilai Intensitas Cahaya',
+										backgroundColor: 'transparent',
+										borderColor: 'red',
+										pointRadius: 0,
+										data: value2
+									}]
+								},
+								options: {
+									bazierCurve: false,
+									responsive: true,
+									animation: {
+										duration: 0,
+										easing: 'linear'
+									}
 								}
-							}
-						});
-						var ctx3 = document.getElementById('ph');
-						var chart = new Chart(ctx3, {
-							type: 'line',
-							data: {
-								labels: label,
-								datasets: [{
-									label: 'Nilai Ph Tanah',
-									backgroundColor: 'transparent',
-									borderColor: 'blue',
-									pointRadius: 0,
-									data: value3
-								}]
-							},
-							options: {
-								bazierCurve: false,
-								responsive: true,
-								animation: {
-									duration: 0,
-									easing: 'linear'
+							});
+							var ctx3 = document.getElementById('ph');
+							var chart = new Chart(ctx3, {
+								type: 'line',
+								data: {
+									labels: label,
+									datasets: [{
+										label: 'Nilai Ph Tanah',
+										backgroundColor: 'transparent',
+										borderColor: 'blue',
+										pointRadius: 0,
+										data: value3
+									}]
+								},
+								options: {
+									bazierCurve: false,
+									responsive: true,
+									animation: {
+										duration: 0,
+										easing: 'linear'
+									}
 								}
-							}
-						});
-						var ctx4 = document.getElementById('soilMoisture');
-						var chart = new Chart(ctx4, {
-							type: 'line',
-							data: {
-								labels: label,
-								datasets: [{
-									label: 'Nilai Kelembaban Tanah',
-									backgroundColor: 'transparent',
-									borderColor: 'blue',
-									pointRadius: 0,
-									data: value4
-								}]
-							},
-							options: {
-								bazierCurve: false,
-								responsive: true,
-								animation: {
-									duration: 0,
-									easing: 'linear'
+							});
+							var ctx4 = document.getElementById('soilMoisture');
+							var chart = new Chart(ctx4, {
+								type: 'line',
+								data: {
+									labels: label,
+									datasets: [{
+										label: 'Nilai Kelembaban Tanah',
+										backgroundColor: 'transparent',
+										borderColor: 'blue',
+										pointRadius: 0,
+										data: value4
+									}]
+								},
+								options: {
+									bazierCurve: false,
+									responsive: true,
+									animation: {
+										duration: 0,
+										easing: 'linear'
+									}
 								}
-							}
-						});
-					}
-				});
+							});
+						}
+					});
+				}
+			} else {
+
 			}
+
 			let table = $('#table').DataTable({
 
 				processing: false,
@@ -298,7 +304,7 @@
 				pagingType: "full_numbers",
 				pageLength: 25,
 				ajax: {
-					url: "<?= $isGPS ? site_url('Lokasi/getAjax') : site_url('Monitoring/getAjax'); ?>",
+					url: "<?= $statusPage === 'Monitoring' ?  site_url('Monitoring/getAjax') : ($statusPage === 'lokasiTanaman' ? site_url('Lokasi/getAjaxTanaman') : ($statusPage === "lokasiAlat" ? site_url('Lokasi/getAjaxAlat') : "kosong")); ?>",
 					type: 'POST'
 				},
 				columnDefs: [{
@@ -306,24 +312,18 @@
 					className: 'text-center'
 				}]
 			});
+
+
+
 			setInterval(() => {
-				$('#nilaiSensor').load("<?= $isGPS ? site_url('dashboard/gps') : site_url('dashboard/status') ?>");
-				reloadInterval();
+				$('#nilaiSensor').load('<?= $statusPage === "Monitoring" ?  site_url('dashboard/status') : ($statusPage === "lokasiTanaman" ? site_url('dashboard/gpsTanaman') : ($statusPage === "lokasiAlat" ? site_url('dashboard/gpsAlat') : site_url('dashboard/status'))); ?>');
+				if (statusPage == "Dashboard") {
+					reloadInterval();
+				}
 			}, 1000);
 			setInterval(() => {
 				table.ajax.reload();
 			}, 30000);
-
-			// setInterval(() => {
-
-			// }, 15000);
-
-			// function getTable() {
-			// 	$('#table').DataTable({
-			// 		"paging": false
-			// 	});
-			// }
-
 
 		});
 	</script>

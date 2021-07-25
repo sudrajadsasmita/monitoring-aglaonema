@@ -16,7 +16,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *
  */
 
-class Lokasi_model extends CI_Model
+class Lokasi_alat_model extends CI_Model
 {
 
 	// ------------------------------------------------------------------------
@@ -37,7 +37,7 @@ class Lokasi_model extends CI_Model
 	public function _get_datatables_query()
 	{
 		$this->db->select('*');
-		$this->db->from('tb_lokasi');
+		$this->db->from('tb_lokasi_alat');
 
 		$i = 0;
 
@@ -84,27 +84,27 @@ class Lokasi_model extends CI_Model
 
 	public function count_all()
 	{
-		$this->db->from('tb_lokasi');
+		$this->db->from('tb_lokasi_alat');
 		return $this->db->count_all_results();
 	}
 
 	public function create($post)
 	{
 
-		$this->db->insert('tb_lokasi', $post);
+		$this->db->insert('tb_lokasi_alat', $post);
 		return $this->db->affected_rows();
 	}
 
 	// ------------------------------------------------------------------------
 	public function latestRecord()
 	{
-		$query = $this->db->query("SELECT * FROM tb_lokasi WHERE id IN (SELECT MAX(id) FROM tb_lokasi)")->row_array();
+		$query = $this->db->query("SELECT * FROM tb_lokasi_alat WHERE id IN (SELECT MAX(id) FROM tb_lokasi_alat)")->row_array();
 		return $query;
 	}
 
 	public function get()
 	{
-		$query = $this->db->get('tb_lokasi');
+		$query = $this->db->get('tb_lokasi_alat');
 		return $query->result();
 	}
 
@@ -112,5 +112,6 @@ class Lokasi_model extends CI_Model
 
 }
 
-/* End of file Lokasi_model.php */
-/* Location: ./application/models/Lokasi_model.php */
+
+/* End of file Lokasi_tanaman_model.php */
+/* Location: ./application/models/Lokasi_tanaman_model.php */

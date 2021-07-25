@@ -1,8 +1,10 @@
+<!-- Tabs content -->
 <div class="row">
 	<div class="col-lg-12">
 		<!-- page statustic card start -->
 		<div class="card table-card review-card">
 			<div class="card-body p-4">
+				<h1 class="text-center text-uppercase text-primary">Lokasi Alat</h1>
 				<div class="table-responsive">
 					<table class="table table-hover table-card text-center" id="table">
 						<thead>
