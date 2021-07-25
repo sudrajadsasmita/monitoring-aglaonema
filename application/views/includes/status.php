@@ -1,5 +1,5 @@
-<div class="row">
-	<div class="col-lg-3">
+<div class="row justify-content-center">
+	<div class="col-lg-6">
 		<div class="card">
 			<div class="card-body">
 				<div class="row align-items-center">
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-6">
 		<div class="card">
 			<div class="card-body">
 				<div class="row align-items-center">
@@ -41,7 +41,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3">
+</div>
+<div class="row justify-content-center">
+	<div class="col-lg-4">
 		<div class="card">
 			<div class="card-body">
 				<div class="row align-items-center">
@@ -62,7 +64,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-4">
 		<div class="card">
 			<div class="card-body">
 				<div class="row align-items-center">
@@ -78,6 +80,27 @@
 				<div class="row align-items-center">
 					<div class="col-9">
 						<h6 class="text-light m-b-0">PH</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="card">
+			<div class="card-body">
+				<div class="row align-items-center">
+					<div class="col-8">
+						<h4 class="text-c-purple"><?= $data['moisture']; ?></h4>
+					</div>
+					<div class="col-4 text-right">
+						<i class="fas fa-mountain f-28"></i>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer bg-c-purple">
+				<div class="row align-items-center">
+					<div class="col-9">
+						<h6 class="text-light m-b-0">Kelembaban Tanah</h6>
 					</div>
 				</div>
 			</div>

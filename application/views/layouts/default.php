@@ -42,7 +42,7 @@
 					</div>
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
-							<li class="list-group-item"><a href="auth-normal-sign-in.html"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
+							<li class="list-group-item"><a href="<?= site_url('Auth/logout') ?>"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
 						</ul>
 					</div>
 				</div>
@@ -82,7 +82,7 @@
 								<span><?= $user; ?></span>
 							</div>
 							<ul class="pro-body">
-								<li><a href="#" class="dropdown-item"><i class="feather icon-log-out"></i>
+								<li><a href="<?= site_url('Auth/logout') ?>" class="dropdown-item"><i class="feather icon-log-out"></i>
 										Logout</a></li>
 							</ul>
 						</div>
@@ -123,19 +123,21 @@
 				<!-- page statustic card start -->
 
 				<div class="col-md-12">
-					<?php $this->load->view($pages); ?>
+					<?php $this->load->view($pages, [
+						'data' => $data
+					]); ?>
 				</div>
 			</div>
 			<!-- [ Main Content ] end -->
 		</div>
 	</div>
 
-
 	<!-- Required Js -->
 	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/vendor-all.min.js"></script>
 	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/plugins/bootstrap.min.js"></script>
 	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/ripple.js"></script>
 	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/pcoded.min.js"></script>
+	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/chart.min.js"></script>
 
 	<!-- Apex Chart -->
 	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/plugins/apexcharts.min.js"></script>
@@ -147,11 +149,156 @@
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 	<script>
 		$(document).ready(function() {
+			let base_url = "<?= base_url(); ?>";
+
+			function reloadInterval() {
+
+				$.ajax({
+					type: "GET",
+					url: base_url + "Monitoring/getAjax",
+					dataType: "JSON",
+					success: function(response) {
+						// console.log(response);
+						let data = response.data;
+						let label = [];
+						let value = [];
+						let value1 = [];
+						let value2 = [];
+						let value3 = [];
+						let value4 = [];
+						data.forEach(element => {
+							value.push(element[1]);
+							value1.push(element[2]);
+							value2.push(element[3]);
+							value3.push(element[4]);
+							value4.push(element[5]);
+							label.push(element[6]);
+						});
+						var ctx = document.getElementById('humidity');
+						var chart = new Chart(ctx, {
+							type: 'line',
+							data: {
+								labels: label,
+								datasets: [{
+									label: 'Nilai Kelembaban Udara',
+									backgroundColor: 'transparent',
+									borderColor: 'orange',
+									pointRadius: 0,
+									data: value
+								}]
+							},
+							options: {
+								bazierCurve: false,
+								responsive: true,
+								animation: {
+									duration: 0,
+									easing: 'linear'
+								}
+							}
+						});
+						var ctx1 = document.getElementById('temperature');
+						var chart = new Chart(ctx1, {
+							type: 'line',
+							data: {
+								labels: label,
+								datasets: [{
+									label: 'Nilai Temperature Udara',
+									backgroundColor: 'transparent',
+									borderColor: 'green',
+									pointRadius: 0,
+									data: value1
+								}]
+							},
+							options: {
+								bazierCurve: false,
+								responsive: true,
+								animation: {
+									duration: 0,
+									easing: 'linear'
+								}
+							}
+						});
+						var ctx2 = document.getElementById('lux');
+						var chart = new Chart(ctx2, {
+							type: 'line',
+							data: {
+								labels: label,
+								datasets: [{
+									label: 'Nilai Intensitas Cahaya',
+									backgroundColor: 'transparent',
+									borderColor: 'red',
+									pointRadius: 0,
+									data: value2
+								}]
+							},
+							options: {
+								bazierCurve: false,
+								responsive: true,
+								animation: {
+									duration: 0,
+									easing: 'linear'
+								}
+							}
+						});
+						var ctx3 = document.getElementById('ph');
+						var chart = new Chart(ctx3, {
+							type: 'line',
+							data: {
+								labels: label,
+								datasets: [{
+									label: 'Nilai Ph Tanah',
+									backgroundColor: 'transparent',
+									borderColor: 'blue',
+									pointRadius: 0,
+									data: value3
+								}]
+							},
+							options: {
+								bazierCurve: false,
+								responsive: true,
+								animation: {
+									duration: 0,
+									easing: 'linear'
+								}
+							}
+						});
+						var ctx4 = document.getElementById('soilMoisture');
+						var chart = new Chart(ctx4, {
+							type: 'line',
+							data: {
+								labels: label,
+								datasets: [{
+									label: 'Nilai Kelembaban Tanah',
+									backgroundColor: 'transparent',
+									borderColor: 'blue',
+									pointRadius: 0,
+									data: value4
+								}]
+							},
+							options: {
+								bazierCurve: false,
+								responsive: true,
+								animation: {
+									duration: 0,
+									easing: 'linear'
+								}
+							}
+						});
+					}
+				});
+			}
 			let table = $('#table').DataTable({
+
 				processing: false,
 				serverSide: true,
+				lengthMenu: [
+					[10, 25, 50, 100, 999999999999],
+					[10, 25, 50, 100, "All"]
+				],
+				pagingType: "full_numbers",
+				pageLength: 25,
 				ajax: {
-					url: '<?= site_url('Monitoring/getAjax'); ?>',
+					url: "<?= $isGPS ? site_url('Lokasi/getAjax') : site_url('Monitoring/getAjax'); ?>",
 					type: 'POST'
 				},
 				columnDefs: [{
@@ -160,13 +307,27 @@
 				}]
 			});
 			setInterval(() => {
-				$('#nilaiSensor').load("<?= site_url('dashboard/status') ?>");
-			}, 2000);
+				$('#nilaiSensor').load("<?= $isGPS ? site_url('dashboard/gps') : site_url('dashboard/status') ?>");
+				reloadInterval();
+			}, 1000);
 			setInterval(() => {
 				table.ajax.reload();
 			}, 30000);
+
+			// setInterval(() => {
+
+			// }, 15000);
+
+			// function getTable() {
+			// 	$('#table').DataTable({
+			// 		"paging": false
+			// 	});
+			// }
+
+
 		});
 	</script>
+
 </body>
 
 </html>

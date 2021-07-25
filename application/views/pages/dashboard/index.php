@@ -1,4 +1,43 @@
 <div class="row">
+	<div class="col-lg-6">
+		<div class="card table-card review-card">
+			<div class="card-body p4">
+				<canvas id="humidity"></canvas>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="card table-card review-card">
+			<div class="card-body p4">
+				<canvas id="temperature"></canvas>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-4">
+		<div class="card table-card review-card">
+			<div class="card-body p4">
+				<canvas id="lux"></canvas>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="card table-card review-card">
+			<div class="card-body p4">
+				<canvas id="ph"></canvas>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="card table-card review-card">
+			<div class="card-body p4">
+				<canvas id="soilMoisture"></canvas>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
 	<div class="col-lg-12">
 		<!-- page statustic card start -->
 		<div class="card table-card review-card">

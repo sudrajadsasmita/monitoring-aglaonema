@@ -5,5 +5,8 @@
 	<a href="<?= site_url(); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 </li>
 <li class="nav-item">
-	<a href="<?= site_url('Monitoring') ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Monitoring</span></a>
+	<a href="<?= site_url('Monitoring') ?>" class="nav-link "><span class="pcoded-micon"><i class="fas fa-desktop"></i></span><span class="pcoded-mtext">Monitoring</span></a>
+</li>
+<li class="nav-item">
+	<a href="<?= site_url('Lokasi') ?>" class="nav-link "><span class="pcoded-micon"><i class="fas fa-desktop"></i></span><span class="pcoded-mtext">Lokasi</span></a>
 </li>

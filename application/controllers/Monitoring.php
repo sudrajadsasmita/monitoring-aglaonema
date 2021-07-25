@@ -20,7 +20,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Monitoring extends CI_Controller
 {
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -29,23 +28,43 @@ class Monitoring extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('layouts/default', [
-			'title'	=> 'Monitoring',
-			'pages'	=> 'pages/monitoring/index',
-			'user'	=> 'Admin'
-		]);
+		check_not_login();
+		$data = $this->monitor->get();
+		if ($data != null) {
+			$this->load->view('layouts/default', [
+				'title'	=> 'Monitoring',
+				'pages'	=> 'pages/monitoring/index',
+				'user'	=> 'Admin',
+				'data' 	=> $data,
+				'isGPS' => false
+			]);
+		} else {
+			$this->load->view('layouts/default', [
+				'title'	=> 'Monitoring',
+				'pages'	=> 'pages/monitoring/index',
+				'user'	=> 'Admin',
+				'data'	=> null,
+				'isGPS' => false
+			]);
+		}
 	}
+
+
 
 	public function add()
 	{
 		$data = [
-			'humidity' => $this->input->post('humidity'),
-			'temperature' => $this->input->post('temperature'),
-			'lux' => $this->input->post('lux'),
-			'ph' => $this->input->post('ph'),
+			'humidity'		=> $this->input->post('humidity'),
+			'temperature'	=> $this->input->post('temperature'),
+			'lux' 			=> $this->input->post('lux'),
+			'ph'			=> $this->input->post('ph'),
+			'moisture'		=> $this->input->post('moisture'),
 		];
-		echo $this->monitor->create($data);
+		$response = $this->monitor->create($data);
+		echo $response;
 	}
+
+
 
 	public function getAjax()
 	{
@@ -60,6 +79,7 @@ class Monitoring extends CI_Controller
 			$row[] = $item->temperature;
 			$row[] = $item->lux;
 			$row[] = $item->ph;
+			$row[] = $item->moisture;
 			$row[] = $item->created;
 
 			$data[] = $row;

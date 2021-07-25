@@ -25,16 +25,20 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Monitoring_model', 'monitor');
+		$this->load->model('Lokasi_model', 'lokasi');
 	}
 
 	public function index()
 	{
 		// $url1 = $_SERVER['REQUEST_URI'];
 		// header("Refresh: 5; URL=$url1");
+		check_not_login();
 		$this->load->view('layouts/default', [
 			'title'	=> 'Dashboard',
 			'pages'	=> 'pages/dashboard/index',
-			'user'	=> 'Admin'
+			'user'	=> 'Admin',
+			'data'	=> null,
+			'isGPS' => false
 		]);
 	}
 	public function status()
@@ -46,12 +50,30 @@ class Dashboard extends CI_Controller
 				'temperature' => 0,
 				'lux' => 0,
 				'ph' => 0,
+				'moisture' => 0,
 			];
 			$this->load->view('includes/status', [
 				'data' => $dataReplace
 			]);
 		} else {
 			$this->load->view('includes/status', [
+				'data' => $data
+			]);
+		}
+	}
+	public function gps()
+	{
+		$data = $this->lokasi->latestRecord();
+		if ($data ==  null) {
+			$dataReplace = [
+				'longitude' => 0,
+				'latitude' => 0,
+			];
+			$this->load->view('includes/gps', [
+				'data' => $dataReplace
+			]);
+		} else {
+			$this->load->view('includes/gps', [
 				'data' => $data
 			]);
 		}

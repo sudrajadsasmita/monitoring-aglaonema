@@ -19,8 +19,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Monitoring_model extends CI_Model
 {
 
-	var $column_order = [null, 'humidity', 'temperature', 'lux', 'ph', 'created'];
-	var $column_search = ['humidity', 'temperature', 'lux', 'ph', 'created'];
+	var $column_order = [null, 'humidity', 'temperature', 'lux', 'ph', 'moisture', 'created'];
+	var $column_search = ['humidity', 'temperature', 'lux', 'ph', 'moisture', 'created'];
 
 	var $order = ['id' => 'asc'];
 
@@ -90,6 +90,12 @@ class Monitoring_model extends CI_Model
 	{
 		$query = $this->db->query("SELECT * FROM tb_sensor WHERE id IN (SELECT MAX(id) FROM tb_sensor)")->row_array();
 		return $query;
+	}
+
+	public function get()
+	{
+		$query = $this->db->get('tb_sensor');
+		return $query->result();
 	}
 }
 
