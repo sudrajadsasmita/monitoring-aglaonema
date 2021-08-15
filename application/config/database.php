@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'id16979677_uwik',
-	'password' => '0sF<<@iI55KKa!Vo',
-	'database' => 'id16979677_monitoring_aglonema',
+	'hostname' => 'remotemysql.com',
+	'username' => 'SG7tovpkx2',
+	'password' => 'il7VXnAPM8',
+	'database' => 'SG7tovpkx2',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
