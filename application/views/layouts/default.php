@@ -10,10 +10,10 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="Phoenixcoded" />
 	<!-- Favicon icon -->
-	<link rel="icon" href="<?= base_url('vendor/able/dist/'); ?>assets/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?= base_url('able/dist/'); ?>assets/images/favicon.ico" type="image/x-icon">
 
 	<!-- vendor css -->
-	<link rel="stylesheet" href="<?= base_url('vendor/able/dist/'); ?>assets/css/style.css">
+	<link rel="stylesheet" href="<?= base_url('able/dist/'); ?>assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
 	<!-- Font Awesome -->
 
@@ -36,7 +36,7 @@
 
 				<div class="">
 					<div class="main-menu-header">
-						<img class="img-radius" src="<?= base_url('vendor/able/dist/'); ?>assets/images/user.png" alt="User-Profile-Image">
+						<img class="img-radius" src="<?= base_url('able/dist/'); ?>assets/images/user.png" alt="User-Profile-Image">
 						<div class="user-details">
 							<div id="more-details"><?= $user; ?> <i class="fa fa-caret-down"></i></div>
 						</div>
@@ -79,7 +79,7 @@
 						</a>
 						<div class="dropdown-menu dropdown-menu-right profile-notification">
 							<div class="pro-head">
-								<img src="<?= base_url('vendor/able/dist/'); ?>assets/images/user.png" class="img-radius" alt="User-Profile-Image">
+								<img src="<?= base_url('able/dist/'); ?>assets/images/user.png" class="img-radius" alt="User-Profile-Image">
 								<span><?= $user; ?></span>
 							</div>
 							<ul class="pro-body">
@@ -132,18 +132,18 @@
 	</div>
 
 	<!-- Required Js -->
-	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/vendor-all.min.js"></script>
-	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/plugins/bootstrap.min.js"></script>
-	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/ripple.js"></script>
-	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/pcoded.min.js"></script>
-	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/chart.min.js"></script>
+	<script src="<?= base_url('able/dist/'); ?>assets/js/vendor-all.min.js"></script>
+	<script src="<?= base_url('able/dist/'); ?>assets/js/plugins/bootstrap.min.js"></script>
+	<script src="<?= base_url('able/dist/'); ?>assets/js/ripple.js"></script>
+	<script src="<?= base_url('able/dist/'); ?>assets/js/pcoded.min.js"></script>
+	<script src="<?= base_url('able/dist/'); ?>assets/js/chart.min.js"></script>
 
 	<!-- Apex Chart -->
-	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/plugins/apexcharts.min.js"></script>
+	<script src="<?= base_url('able/dist/'); ?>assets/js/plugins/apexcharts.min.js"></script>
 
 
 	<!-- custom-chart js -->
-	<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/pages/dashboard-main.js"></script>
+	<script src="<?= base_url('able/dist/'); ?>assets/js/pages/dashboard-main.js"></script>
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js">
 	</script>
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>

@@ -18,10 +18,10 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="Phoenixcoded" />
 	<!-- Favicon icon -->
-	<link rel="icon" href="<?= base_url('vendor/able/dist/'); ?>assets/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?= base_url('able/dist/'); ?>assets/images/favicon.ico" type="image/x-icon">
 
 	<!-- vendor css -->
-	<link rel="stylesheet" href="<?= base_url('vendor/able/dist/'); ?>assets/css/style.css">
+	<link rel="stylesheet" href="<?= base_url('able/dist/'); ?>assets/css/style.css">
 
 
 
@@ -57,10 +57,10 @@
 <!-- [ auth-signin ] end -->
 
 <!-- Required Js -->
-<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/vendor-all.min.js"></script>
-<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/plugins/bootstrap.min.js"></script>
-<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/ripple.js"></script>
-<script src="<?= base_url('vendor/able/dist/'); ?>assets/js/pcoded.min.js"></script>
+<script src="<?= base_url('able/dist/'); ?>assets/js/vendor-all.min.js"></script>
+<script src="<?= base_url('able/dist/'); ?>assets/js/plugins/bootstrap.min.js"></script>
+<script src="<?= base_url('able/dist/'); ?>assets/js/ripple.js"></script>
+<script src="<?= base_url('able/dist/'); ?>assets/js/pcoded.min.js"></script>
 
 </body>
 
