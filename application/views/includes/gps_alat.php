@@ -44,12 +44,12 @@
 </div>
 <div class="row justify-content-center">
 	<div class="col-lg-12">
-		<a href="<?= "http://maps.google.com/maps?q=" . $data['longitude'] . "," . $data['latitude']; ?>">
+		<a href="<?= "http://maps.google.com/maps?q=" . $data['latitude'] . "," . $data['longitude']; ?>">
 			<div class="card">
 				<div class="card-body">
 					<div class="row align-items-center">
 						<div class="col-8">
-							<h4 class="text-c-blue"><?= "http://maps.google.com/maps?q=" . $data['longitude'] . "," . $data['latitude']; ?></h4>
+							<h4 class="text-c-blue"><?= "http://maps.google.com/maps?q=" . $data['latitude'] . "," . $data['longitude']; ?></h4>
 						</div>
 						<div class="col-4 text-right">
 							<i class="fas fa-location-arrow"></i>
